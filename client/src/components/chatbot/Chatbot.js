@@ -400,10 +400,7 @@ class Chatbot extends Component {
           }}
         >
           <nav style={{ borderRadius: 20 }}>
-            <div
-              className="nav-wrapper"
-              style={{ background: "#546e7a", borderRadius: 20 }}
-            >
+            <div className="nav-wrapper" style={{ background: "#ee6e73" }}>
               <a href="/" className="brand-logo" style={{ marginLeft: 10 }}>
                 Talk to me
               </a>

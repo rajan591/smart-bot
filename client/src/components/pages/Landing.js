@@ -8,6 +8,7 @@ const Landing = () => {
         <div class="card">
           <div class="card-image">
             <img
+              alt="chatbot"
               src="https://miro.medium.com/max/875/1*Sdckr5tAt5peOaZJgsAQ1Q.png"
               style={{}}
             />

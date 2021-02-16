@@ -4,6 +4,8 @@ const config = require("../config/keys");
 const structjson = require("structjson");
 const mongoose = require("mongoose");
 
+const nodemailer = require("nodemailer");
+
 const projectID = config.googleProjectID;
 const sessionID = config.dialogFlowSessionID;
 const languageCode = config.dialogFlowSessionLanguageCode;
@@ -11,6 +13,16 @@ const credentials = {
   client_email: config.googleClientEmail,
   private_key: config.googlePrivateKey,
 };
+//-----------------------------------------inserting my gmail info-------------------------
+let mailTransporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "rajanpandey591@gmail.com",
+    pass: config.gmailPass,
+  },
+});
+
+//-----------------------------------------------------------------------------------
 
 // Create a new session
 const sessionClient = new dialogflow.SessionsClient({ projectID, credentials });
@@ -82,11 +94,31 @@ module.exports = {
       email: fields.email.stringValue,
       phone: fields.phone.stringValue,
       address: fields.address.stringValue,
+      symptoms: fields.symptoms.stringValue,
       registerDate: Date.now(),
     });
     try {
       let reg = await registration.save();
       console.log(reg);
+      let remail = reg.email;
+      console.log(remail);
+      let mailDetails = {
+        from: "rajanpandey591@gmail.com",
+        to: "kalapanihamroho@gmail.com",
+        subject: "smart health bot",
+        text: `SMART HEALTH BOT
+        We have got a patient who is sick and need immidiate help. Patient infos are listed below
+        Name: ${reg.name} 
+        Email ${reg.email}
+        Symptoms : ${reg.symptoms}`,
+      };
+      mailTransporter.sendMail(mailDetails, function (err, data) {
+        if (err) {
+          console.log("Error Occurs");
+        } else {
+          console.log("Email sent successfully");
+        }
+      });
     } catch (err) {
       console.log(err);
     }

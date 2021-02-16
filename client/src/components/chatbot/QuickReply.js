@@ -4,7 +4,7 @@ const QuickReply = (props) => {
   if (props.reply.structValue.fields.payload) {
     return (
       <a
-        href="#"
+        href="/"
         style={{ marginRight: 3 }}
         className="waves-effect waves-light btn-small"
         onClick={(event) => {

@@ -14,7 +14,7 @@
     "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "author": "Jeyanth",
+  "author": "rajan",
   "license": "ISC",
   "dependencies": {
     "actions-on-google": "^2.12.0",
@@ -24,6 +24,7 @@
     "dialogflow-fulfillment": "^0.6.1",
     "express": "^4.17.1",
     "mongoose": "^5.6.11",
+    "nodemailer": "^6.4.18",
     "nodemon": "^1.19.1",
     "structjson": "^1.0.1"
   }
